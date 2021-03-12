@@ -10,11 +10,15 @@ mongoose.connection.once('open', () => {
     console.log('connected to mongoose')
 })
 
+const movieRouter = require('./controllers/movies');
+
+app.use('/movies', movieRouter);
+
+
 app.get('/', (req, res) =>{
-    res.send('Movie Cataloger');
-})
+    res.status(300).redirect('/movies');
+});
 
-
-app.listen(PORT, () =>{
+app.listen(PORT, () => {
     console.log('Listening on port ', PORT);
-})
+});
